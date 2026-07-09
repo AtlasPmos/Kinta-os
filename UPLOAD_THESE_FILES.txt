@@ -1,0 +1,9 @@
+Upload the CONTENTS of this folder to the root of your GitHub repo:
+
+index.html
+README.md
+manifest.json
+sw.js
+icons/
+
+Do not upload the ZIP itself.
