@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>KINTA-OS Genesis</title>
+  <meta name="theme-color" content="#07111f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="KINTA-OS" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <style>
+    :root{--bg:#07111f;--panel:#0d1b2f;--panel2:#101f36;--line:#203857;--text:#eef6ff;--muted:#9fb0c5;--cyan:#37d8ff;--orange:#ff8a2a;--green:#47d16c;--red:#ff5353;--yellow:#ffd166}
+    *{box-sizing:border-box} body{margin:0;background:radial-gradient(circle at top left,#123559 0,#07111f 34%,#03070d 100%);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);min-height:100vh}
+    header{height:76px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(2,8,18,.78);backdrop-filter:blur(18px);position:sticky;top:0;z-index:10}
+    .brand{font-weight:900;font-size:22px;letter-spacing:-.02em}.brand span{color:var(--cyan)}.pill{border:1px solid #244565;background:#0b192b;border-radius:999px;padding:9px 13px;color:#cfe6ff;font-weight:700;font-size:12px}
+    .grid{display:grid;grid-template-columns:270px 1fr 350px;gap:16px;padding:16px;min-height:calc(100vh - 76px)}
+    .card{background:linear-gradient(180deg,rgba(18,35,58,.92),rgba(7,15,27,.92));border:1px solid rgba(92,137,180,.28);border-radius:22px;box-shadow:0 20px 60px rgba(0,0,0,.35);padding:18px}
+    h1{font-size:34px;margin:0 0 8px;letter-spacing:-.04em}h2{font-size:20px;margin:0 0 14px}p{color:var(--muted);line-height:1.45}.nav button{width:100%;text-align:left;background:transparent;border:0;color:#bfd0e4;padding:14px 16px;border-radius:14px;font-weight:800;margin:4px 0}.nav button.active,.nav button:hover{background:#142743;color:white;outline:1px solid #31577f}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.metric{background:#081526;border:1px solid #1e3a57;border-radius:16px;padding:14px}.metric b{font-size:28px;display:block}.metric small{color:var(--muted)}
+    .drop{border:2px dashed #31577f;background:rgba(55,216,255,.05);border-radius:22px;padding:26px;text-align:center;margin:14px 0}.drop strong{display:block;font-size:22px;margin-bottom:8px}.btn{background:linear-gradient(135deg,#1b83ff,#37d8ff);border:0;color:#001321;padding:12px 16px;border-radius:14px;font-weight:900}.btn2{background:#12233b;border:1px solid #31577f;color:#dcefff;padding:12px 16px;border-radius:14px;font-weight:900}.row{display:flex;gap:10px;flex-wrap:wrap}.list{display:grid;gap:10px}.item{display:flex;justify-content:space-between;gap:12px;align-items:center;background:#081526;border:1px solid #1e3a57;border-radius:14px;padding:12px}.tag{font-size:11px;border:1px solid #2c5178;border-radius:999px;padding:5px 8px;color:#b9d5f4}.ok{color:var(--green)}.warn{color:var(--yellow)}.bad{color:var(--red)}
+    .plan{position:relative;height:430px;background:#07101d;border:1px solid #26425f;border-radius:20px;overflow:hidden;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:32px 32px}.room{position:absolute;border:2px solid #5b7594;border-radius:10px}.equip{position:absolute;border:2px solid #37d8ff;background:rgba(55,216,255,.17);border-radius:8px;color:white;font-size:11px;font-weight:900;padding:6px;cursor:pointer;box-shadow:0 0 18px rgba(55,216,255,.18)}.equip.warn{border-color:#ffd166;background:rgba(255,209,102,.16)}.equip.bad{border-color:#ff5353;background:rgba(255,83,83,.16)}
+    textarea,input{width:100%;background:#07101d;border:1px solid #284969;color:white;border-radius:14px;padding:13px;font:inherit}textarea{min-height:90px}.hidden{display:none}.footer{font-size:11px;color:#6f839b;margin-top:16px}.sig{opacity:.18;font-size:10px;letter-spacing:.08em;margin-top:20px}.sig:hover{opacity:.75;color:#ffd4f4}
+    @media(max-width:950px){.grid{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}header{height:auto;gap:8px;align-items:flex-start;flex-direction:column}.card{border-radius:18px}.plan{height:360px}}
+  </style>
+</head>
+<body>
+<header><div class="brand">KINTA-<span>OS</span> Genesis</div><div class="row"><span class="pill">Mod 8 iPad PWA 404 Fix</span><span class="pill">Local memory on</span></div></header>
+<main class="grid">
+  <aside class="card nav">
+    <h2>Workspaces</h2>
+    <button class="active" onclick="show('home',this)">Home Command</button>
+    <button onclick="show('projects',this)">Projects + Demo</button>
+    <button onclick="show('vault',this)">Upload Project Vault</button>
+    <button onclick="show('kitchen',this)">Clickable Floor Plan</button>
+    <button onclick="show('mep',this)">MEP Verification</button>
+    <button onclick="show('ask',this)">Ask KINTA</button>
+    <button onclick="show('deploy',this)">iPad / GitHub Fix</button>
+    <hr style="border-color:#263f5a;border-width:1px 0 0;margin:18px 0">
+    <button onclick="exportMemory()">Export Memory JSON</button>
+    <button onclick="resetMemory()">Reset Demo Data</button>
+    <div class="sig" title="Hidden signature">guided by L.</div>
+  </aside>
+  <section class="card">
+    <div id="home" class="screen">
+      <h1>Good Morning, Rick</h1><p>KINTA is ready to organize your projects, files, equipment, MEP checks, and field questions from one command center.</p>
+      <div class="metrics"><div class="metric"><small>Projects</small><b id="mProjects">3</b></div><div class="metric"><small>Equipment</small><b id="mEquip">8</b></div><div class="metric"><small>MEP Open</small><b id="mMep">4</b></div><div class="metric"><small>Files</small><b id="mFiles">0</b></div></div>
+      <div class="drop"><strong>Upload All Project Files</strong><p>Drop drawings, schedules, specs, photos, emails, submittals, startup sheets, and warranty files here.</p><input type="file" multiple onchange="handleFiles(this.files)"></div>
+      <div class="row"><button class="btn" onclick="loadDemo()">Load Demo Project</button><button class="btn2" onclick="showById('kitchen')">Open Clickable Floor Plan</button><button class="btn2" onclick="showById('ask')">Ask KINTA</button></div>
+    </div>
+    <div id="projects" class="screen hidden"><h1>Projects</h1><p>Project library with demo loader and saved local memory.</p><div class="list" id="projectList"></div><div class="row" style="margin-top:14px"><input id="newProject" placeholder="New project name"><button class="btn" onclick="addProject()">Create Project</button></div></div>
+    <div id="vault" class="screen hidden"><h1>Project File Vault</h1><p>Central upload area. KINTA tracks what is present and what is missing before answering project questions.</p><div class="drop"><strong>Drop Entire Project Here</strong><input type="file" multiple onchange="handleFiles(this.files)"></div><h2>Uploaded Files</h2><div id="fileList" class="list"></div><h2>Coverage</h2><div id="coverage" class="list"></div></div>
+    <div id="kitchen" class="screen hidden"><h1>Clickable Equipment Floor Plan</h1><p>Demo layout uses equipment blocks to scale conceptually. Click any item to open Equipment DNA, dimensions, MEP, startup, and graph links.</p><div class="plan" id="plan"></div></div>
+    <div id="mep" class="screen hidden"><h1>MEP Verification</h1><p>Click equipment in the floor plan or use the selected equipment panel. Toggle each service as field-verified.</p><div id="mepMain" class="list"></div></div>
+    <div id="ask" class="screen hidden"><h1>Ask KINTA</h1><p>Ask questions about the active project. If the files are missing, KINTA tells you what to upload instead of guessing.</p><textarea id="question" placeholder="Example: Which equipment is missing drains? What documents are missing? Does 302 have all MEP verified?"></textarea><br><br><button class="btn" onclick="askKinta()">Ask</button><div id="answer" class="card" style="margin-top:14px;background:#081526"></div></div>
+    <div id="deploy" class="screen hidden"><h1>iPad / GitHub Pages Fix</h1><p>Your website can work in Safari while the installed iPad app shows 404 because the home-screen icon is still pointing to an old URL or cached service worker.</p><div class="list"><div class="item"><b>1. Delete old iPad home-screen app</b><span class="tag">required</span></div><div class="item"><b>2. Open Safari to the working root site</b><span class="tag">root URL</span></div><div class="item"><b>3. Share → Add to Home Screen again</b><span class="tag">refresh start_url</span></div><div class="item"><b>4. If still failing, clear Safari website data for GitHub Pages</b><span class="tag">cache reset</span></div><div class="item"><b>5. Upload only root files, never the zip/folder</b><span class="tag">deploy safe</span></div></div><p class="footer">This build sets manifest start_url and scope to ./ so the installed app opens the same root path as Safari.</p></div>
+  </section>
+  <aside class="card"><h2>Selected Equipment</h2><div id="inspector"></div><h2>Knowledge Graph</h2><div id="graph" class="list"></div></aside>
+</main>
+<script>
+const key='kinta_mod8_memory';
+let db=JSON.parse(localStorage.getItem(key)||'null')||{projects:['Live Nation Pittsburgh Demo','Galaxy Demo','Monarch Demo'],files:[],selected:'302',equipment:[
+{id:'301',name:'Combi Oven',mfg:'Rational',x:70,y:70,w:70,h:50,dim:'42x40',status:'warn',mep:{electric:false,gas:true,water:true,drain:false,vent:true,refrig:null}},
+{id:'302',name:'Walk-In Cooler',mfg:'American Panel',x:180,y:55,w:150,h:95,dim:'120x96',status:'ok',mep:{electric:true,gas:null,water:null,drain:true,vent:null,refrig:true}},
+{id:'303',name:'Dishmachine',mfg:'Hobart',x:380,y:72,w:90,h:56,dim:'64x32',status:'bad',mep:{electric:true,gas:null,water:false,drain:false,vent:true,refrig:null}},
+{id:'304',name:'Ice Machine',mfg:'Hoshizaki',x:90,y:220,w:65,h:60,dim:'30x34',status:'warn',mep:{electric:true,gas:null,water:true,drain:false,vent:null,refrig:true}},
+{id:'305',name:'Fryer Battery',mfg:'Vulcan',x:240,y:230,w:120,h:50,dim:'72x36',status:'bad',mep:{electric:true,gas:false,water:null,drain:null,vent:true,refrig:null}},
+{id:'306',name:'Prep Sink',mfg:'Advance Tabco',x:420,y:225,w:95,h:45,dim:'72x30',status:'ok',mep:{electric:null,gas:null,water:true,drain:true,vent:null,refrig:null}}
+]};
+function save(){localStorage.setItem(key,JSON.stringify(db));render()}
+function show(id,btn){document.querySelectorAll('.screen').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active')); if(btn)btn.classList.add('active')}
+function showById(id){show(id,[...document.querySelectorAll('.nav button')].find(b=>b.textContent.toLowerCase().includes(id==='kitchen'?'floor':id)))}
+function render(){document.getElementById('mProjects').textContent=db.projects.length;document.getElementById('mEquip').textContent=db.equipment.length;document.getElementById('mFiles').textContent=db.files.length;document.getElementById('mMep').textContent=db.equipment.reduce((a,e)=>a+Object.values(e.mep).filter(v=>v===false).length,0);document.getElementById('projectList').innerHTML=db.projects.map(p=>`<div class="item"><b>${p}</b><span class="tag">project</span></div>`).join('');document.getElementById('fileList').innerHTML=db.files.length?db.files.map(f=>`<div class="item"><b>${f.name}</b><span class="tag">${f.type}</span></div>`).join(''):'<p>No files uploaded yet.</p>';renderCoverage();renderPlan();renderInspector();renderMepMain()}
+function renderCoverage(){let cats=['Equipment Schedule','Foodservice Drawings','Electrical Drawings','Plumbing Drawings','Mechanical Drawings','Specs','Photos','Startup','Warranty','RFIs'];let files=db.files.map(f=>f.name.toLowerCase()).join(' ');document.getElementById('coverage').innerHTML=cats.map(c=>{let q=c.toLowerCase().split(' ')[0];let ok=files.includes(q)||files.includes(c.toLowerCase());return `<div class="item"><b>${c}</b><span class="tag ${ok?'ok':'warn'}">${ok?'present':'needed'}</span></div>`}).join('')}
+function renderPlan(){let p=document.getElementById('plan'); if(!p)return; p.innerHTML='<div class="room" style="left:35px;top:35px;width:520px;height:330px"></div><div class="room" style="left:35px;top:385px;width:520px;height:28px;border-style:dashed"></div>';db.equipment.forEach(e=>{p.innerHTML+=`<div class="equip ${e.status==='warn'?'warn':e.status==='bad'?'bad':''}" onclick="selectEquip('${e.id}')" style="left:${e.x}px;top:${e.y}px;width:${e.w}px;height:${e.h}px">${e.id}<br>${e.name}</div>`})}
+function selectEquip(id){db.selected=id;save()}
+function renderInspector(){let e=db.equipment.find(x=>x.id===db.selected)||db.equipment[0];let rows=Object.entries(e.mep).map(([k,v])=>`<div class="item"><b>${k.toUpperCase()}</b><span class="tag ${v===true?'ok':v===false?'bad':'warn'}">${v===true?'Verified':v===false?'Missing':'N/A'}</span></div>`).join('');document.getElementById('inspector').innerHTML=`<div class="card" style="background:#081526"><h2>${e.id} · ${e.name}</h2><p>${e.mfg}<br>Dimensions: ${e.dim} in</p>${rows}<button class="btn2" onclick="toggleNext('${e.id}')">Toggle next missing MEP</button></div>`;document.getElementById('graph').innerHTML=['Equipment DNA','MEP Requirements','FS Drawing','Startup','Photos','Warranty'].map(x=>`<div class="item"><b>${e.id} ↔ ${x}</b><span class="tag">linked</span></div>`).join('')}
+function renderMepMain(){let m=document.getElementById('mepMain'); if(!m)return; m.innerHTML=db.equipment.map(e=>`<div class="item"><b>${e.id} ${e.name}</b><span class="tag ${Object.values(e.mep).some(v=>v===false)?'bad':'ok'}">${Object.values(e.mep).some(v=>v===false)?'open':'ready'}</span></div>`).join('')}
+function toggleNext(id){let e=db.equipment.find(x=>x.id===id);let k=Object.keys(e.mep).find(k=>e.mep[k]===false);if(k)e.mep[k]=true;save()}
+function handleFiles(files){[...files].forEach(f=>db.files.push({name:f.name,type:f.name.split('.').pop()||'file',date:new Date().toISOString()}));save();showById('vault')}
+function addProject(){let v=document.getElementById('newProject').value.trim(); if(v){db.projects.push(v);document.getElementById('newProject').value='';save()}}
+function loadDemo(){db.projects=['Live Nation Pittsburgh Demo','Galaxy Demo','Monarch Demo','Wylie Demo'];save();showById('projects')}
+function askKinta(){let q=document.getElementById('question').value.toLowerCase();let missing=db.equipment.filter(e=>Object.values(e.mep).some(v=>v===false));let ans=''; if(q.includes('missing')||q.includes('mep')||q.includes('drain')||q.includes('gas')){ans='<h2>MEP Open Items</h2>'+missing.map(e=>`<p><b>${e.id} ${e.name}</b>: ${Object.entries(e.mep).filter(([k,v])=>v===false).map(([k])=>k).join(', ')}</p>`).join('')} else if(q.includes('document')||q.includes('upload')){ans='<h2>Document Coverage</h2><p>I can answer better after the equipment schedule, FS drawings, electrical, plumbing, mechanical, specs, startup, and warranty files are uploaded.</p>'} else {ans='<h2>Project Answer</h2><p>I can answer from the current demo memory. For contract/drawing-specific answers, upload the project files into the Project Vault.</p>'}document.getElementById('answer').innerHTML=ans}
+function exportMemory(){let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}));a.download='kinta-project-memory.json';a.click()}
+function resetMemory(){localStorage.removeItem(key);location.reload()}
+render();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{})}
+</script>
+</body>
+</html>
